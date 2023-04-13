@@ -1,10 +1,11 @@
+import 'package:compost/pages/login_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
   //Widets, material or cupertino apps as parameter
   runApp(MaterialApp(
-    home: HomePage(),
+    home: LoginPage(),
     theme: ThemeData(
       primarySwatch: Colors.green,
     ),
