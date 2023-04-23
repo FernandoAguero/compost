@@ -13,40 +13,46 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Login Page")),
-      body: SingleChildScrollView(
-          child: Form(
-        key: formkey,
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: <Widget>[
-              TextFormField(
-                controller: _usernameController,
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                    hintText: "Enter email", labelText: "Usuario"),
-              ),
-              TextFormField(
-                controller: _passwordController,
-                keyboardType: TextInputType.text,
-                obscureText: true,
-                decoration: InputDecoration(
-                  hintText: "Enter password",
-                  labelText: "Password",
+        appBar: AppBar(title: Text("Login Page")),
+        body: Stack(
+          children: <Widget>[
+            Image.asset("assets/images/logo.png", fit: BoxFit.cover),
+            const SizedBox(height: 600),
+            SingleChildScrollView(
+                child: Form(
+              key: formkey,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    TextFormField(
+                      controller: _usernameController,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: InputDecoration(
+                          hintText: "Enter email", labelText: "Usuario"),
+                    ),
+                    TextFormField(
+                      controller: _passwordController,
+                      keyboardType: TextInputType.text,
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        hintText: "Enter password",
+                        labelText: "Password",
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 60,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: const Text("Iniciar"),
+                    )
+                  ],
                 ),
               ),
-              const SizedBox(
-                height: 30,
-              ),
-              ElevatedButton(
-                onPressed: () {},
-                child: const Text("Iniciar"),
-              )
-            ],
-          ),
-        ),
-      )),
-    );
+            ))
+          ],
+        ));
   }
 }
