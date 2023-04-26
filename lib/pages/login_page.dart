@@ -1,6 +1,11 @@
+import 'package:compost/main.dart';
 import 'package:flutter/material.dart';
 
+import '../utils/constants.dart';
+import 'home_page.dart';
+
 class LoginPage extends StatefulWidget {
+  static const String routeName = "/login";
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -13,7 +18,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text("Login Page")),
+        appBar: AppBar(title: Text("Colegio Científico")),
         body: Stack(
           fit: StackFit.expand,
           children: <Widget>[
@@ -35,12 +40,14 @@ class _LoginPageState extends State<LoginPage> {
                     children: <Widget>[
                       TextFormField(
                         controller: _usernameController,
+                        validator: (s) {},
                         keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
                             hintText: "Enter email", labelText: "Usuario"),
                       ),
                       TextFormField(
                         controller: _passwordController,
+                        validator: (value) {},
                         keyboardType: TextInputType.text,
                         obscureText: true,
                         decoration: InputDecoration(
@@ -52,7 +59,18 @@ class _LoginPageState extends State<LoginPage> {
                         height: 60,
                       ),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Constants.prefs.setBool("loggedIn", true);
+                          //formkey.currentState?.validate();
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (context) => HomePage()));
+
+                          //no chance of coming back to this screen
+                          Navigator.pushReplacementNamed(
+                              context, HomePage.routeName);
+                        },
                         child: const Text("Iniciar"),
                       )
                     ],

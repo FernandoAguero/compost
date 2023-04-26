@@ -1,40 +1,44 @@
+import 'package:compost/pages/home_page.dart';
 import 'package:compost/pages/login_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:compost/utils/constants.dart';
 
-void main() {
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  //singleton
+  Constants.prefs = await SharedPreferences.getInstance();
   //Widets, material or cupertino apps as parameter
-  runApp(MaterialApp(
-    home: LoginPage(),
-    theme: ThemeData(
-      primarySwatch: Colors.green,
-    ),
-  ));
+  // runApp(MaterialApp(
+  //     home: LoginPage(),
+  //     theme: ThemeData(
+  //       primarySwatch: Colors.green,
+  //     ),
+  //     routes: {
+  //       LoginPage.routeName: (context) => LoginPage(),
+  //       HomePage.routeName: (context) => HomePage()
+  //     }));
+  runApp(MyApp());
 }
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
+//I left on 2:10:16 on the vid
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text("Login"),
+    // al a;adir este check de constants prefs no me puedo devolver al login
+    // ya que se encarga de no "cerrar" sesion al darle back
+    // tengo que a;adir un boton que cambie este prefs o que me deje darle sign out en home
+    return MaterialApp(
+        home: Constants.prefs.getBool("loggedIn") == true // false to get out
+            ? HomePage()
+            : LoginPage(),
+        theme: ThemeData(
+          primarySwatch: Colors.green,
         ),
-        body: Center(
-            child: Container(
-          padding: const EdgeInsets.all(8),
-          //color: Colors.blue,
-          width: 100,
-          height: 100,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [Colors.blue, Colors.green]),
-              color: Colors.blue,
-              shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.circular(5),
-              boxShadow: [BoxShadow(blurRadius: 10, color: Colors.grey)]),
-          child: Text("Hi flutter"),
-        )));
+        routes: {
+          LoginPage.routeName: (context) => LoginPage(),
+          HomePage.routeName: (context) => HomePage()
+        });
   }
 }
