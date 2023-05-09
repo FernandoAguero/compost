@@ -19,6 +19,7 @@ jobs:
         with:
           channel: 'stable'
           flutter-version: '3.7.3'
+          node-version: '16'
 
       - name: Install dependencies
         run: flutter pub get
