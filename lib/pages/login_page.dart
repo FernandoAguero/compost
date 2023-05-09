@@ -26,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
               alignment: AlignmentDirectional.topStart,
               child: Image.asset(
                 "assets/images/logo.png",
-                //fit: BoxFit.cover, //comment to test yaml
+                //fit: BoxFit.cover,
               ),
             ),
             Align(
