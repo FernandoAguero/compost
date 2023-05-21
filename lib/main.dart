@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
     // ya que se encarga de no "cerrar" sesion al darle back
     // tengo que a;adir un boton que cambie este prefs o que me deje darle sign out en home
     return MaterialApp(
-        home: Constants.prefs.getBool("loggedIn") == true // false to get out
+        home: Constants.prefs.getBool("loggedIn") == false // false to get out
             ? HomePage()
             : LoginPage(),
         theme: ThemeData(

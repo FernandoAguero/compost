@@ -3,6 +3,9 @@ import 'dart:convert';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
+import '../utils/constants.dart';
+import 'login_page.dart';
+
 /* class HomePage extends StatefulWidget {
 static const String routeName = "/home";
 @override
@@ -43,7 +46,8 @@ Widget build(BuildContext context) {
 class HomePage extends StatefulWidget {
   static const String routeName = "/home";
   @override
-  State<HomePage> createState() => _HomePageState();
+  //State<HomePage> createState() => _HomePageState();
+  _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
@@ -58,7 +62,18 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text("Datepicker")),
+        appBar: AppBar(
+          title: const Text("Datepicker"),
+          actions: <Widget>[
+            IconButton(
+                onPressed: () {
+                  Constants.prefs.setBool("loggedIn", false);
+                  Navigator.pushReplacementNamed(context, LoginPage.routeName);
+                  //Navigator.pop(_LoginPageState createState() => _LoginPageState())
+                },
+                icon: Icon(Icons.exit_to_app))
+          ],
+        ),
         body: Container(
             padding: const EdgeInsets.all(15),
             height: 150,

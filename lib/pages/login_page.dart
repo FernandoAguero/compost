@@ -61,7 +61,7 @@ class _LoginPageState extends State<LoginPage> {
                       ElevatedButton(
                         onPressed: () {
                           Constants.prefs.setBool("loggedIn", true);
-                          //formkey.currentState?.validate();
+                          // formkey.currentState?.validate();
                           // Navigator.push(
                           //     context,
                           //     MaterialPageRoute(
@@ -70,6 +70,11 @@ class _LoginPageState extends State<LoginPage> {
                           //no chance of coming back to this screen
                           Navigator.pushReplacementNamed(
                               context, HomePage.routeName);
+
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (context) => HomePage()));
                         },
                         child: const Text("Iniciar"),
                       )
