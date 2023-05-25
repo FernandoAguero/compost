@@ -22,13 +22,9 @@ Future main() async {
   runApp(MyApp());
 }
 
-//I left on 2:10:16 on the vid
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // al a;adir este check de constants prefs no me puedo devolver al login
-    // ya que se encarga de no "cerrar" sesion al darle back
-    // tengo que a;adir un boton que cambie este prefs o que me deje darle sign out en home
     return MaterialApp(
         home: Constants.prefs.getBool("loggedIn") == false // false to get out
             ? HomePage()
