@@ -67,7 +67,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '741495920866',
     projectId: 'compost-tcu468',
     storageBucket: 'compost-tcu468.appspot.com',
-    iosClientId: '741495920866-mbunj99qjspoi7gulhggmskn9oi33jme.apps.googleusercontent.com',
+    iosClientId:
+        '741495920866-mbunj99qjspoi7gulhggmskn9oi33jme.apps.googleusercontent.com',
     iosBundleId: 'com.example.compost',
   );
 
@@ -77,7 +78,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '741495920866',
     projectId: 'compost-tcu468',
     storageBucket: 'compost-tcu468.appspot.com',
-    iosClientId: '741495920866-mbunj99qjspoi7gulhggmskn9oi33jme.apps.googleusercontent.com',
+    iosClientId:
+        '741495920866-mbunj99qjspoi7gulhggmskn9oi33jme.apps.googleusercontent.com',
     iosBundleId: 'com.example.compost',
   );
 }

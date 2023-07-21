@@ -1,6 +1,7 @@
 import 'package:compost/main.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import '../utils/auth.dart';
 import '../utils/constants.dart';
 import 'home_page.dart';
 
@@ -11,9 +12,37 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final formkey = GlobalKey<FormState>();
-  final _usernameController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+
+  final bool _isLogin = false;
+
+  handleSubmit() async {
+    //Validate user inputs using _formKey
+    if (_formKey.currentState!.validate()) {
+      //Get inputs from the controllers
+      final email = _emailController.value.text;
+      final password = _passwordController.value.text;
+      //Check if is login or register
+      if (_isLogin) {
+        await Auth().signInWithEmailAndPassword(email, password);
+      } else {
+        await Auth().registerWithEmailAndPassword(email, password);
+      }
+    }
+  }
+
+  handleSubmit2() async {
+    //Validate user inputs using _formKey
+    if (_formKey.currentState!.validate()) {
+      //Get inputs from the controllers
+      final email = _emailController.value.text;
+      final password = _passwordController.value.text;
+
+      await Auth().signInWithEmailAndPassword(email, password);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,22 +61,30 @@ class _LoginPageState extends State<LoginPage> {
             Align(
               child: SingleChildScrollView(
                   child: Form(
-                key: formkey,
+                key: _formKey,
                 child: Padding(
                   padding: const EdgeInsets.all(26.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       TextFormField(
-                        controller: _usernameController,
-                        validator: (s) {},
+                        controller: _emailController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your email';
+                          }
+                        },
                         keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
-                            hintText: "Enter email", labelText: "Usuario"),
+                            hintText: "Enter email", labelText: "Email"),
                       ),
                       TextFormField(
                         controller: _passwordController,
-                        validator: (value) {},
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your password';
+                          }
+                        },
                         keyboardType: TextInputType.text,
                         obscureText: true,
                         decoration: InputDecoration(
@@ -59,25 +96,28 @@ class _LoginPageState extends State<LoginPage> {
                         height: 60,
                       ),
                       ElevatedButton(
-                        onPressed: () {
-                          Constants.prefs.setBool("loggedIn", true);
-                          // formkey.currentState?.validate();
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) => HomePage()));
+                          onPressed: handleSubmit,
+                          child: Text(_isLogin ? 'Login' : 'Register')
+                          // onPressed: () {
 
-                          //no chance of coming back to this screen
-                          Navigator.pushReplacementNamed(
-                              context, HomePage.routeName);
+                          //   Constants.prefs.setBool("loggedIn", true);
+                          //   // _formKey.currentState?.validate();
+                          //   // Navigator.push(
+                          //   //     context,
+                          //   //     MaterialPageRoute(
+                          //   //         builder: (context) => HomePage()));
 
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) => HomePage()));
-                        },
-                        child: const Text("Iniciar"),
-                      )
+                          //   //no chance of coming back to this screen
+                          //   Navigator.pushReplacementNamed(
+                          //       context, HomePage.routeName);
+
+                          //   // Navigator.push(
+                          //   //     context,
+                          //   //     MaterialPageRoute(
+                          //   //         builder: (context) => HomePage()));
+                          // },
+                          //child: const Text("Iniciar"),
+                          )
                     ],
                   ),
                 ),
