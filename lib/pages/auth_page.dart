@@ -80,7 +80,7 @@ class AuthScreen extends StatelessWidget {
                 //Assigned onPressed to submit
                 onPressed: handleSubmit,
                 //Conditionally show the button label
-                child: Text(_isLogin ? 'Login' : 'Register'),
+                child: Text(_isLogin ? 'Login' : 'Registrarse'),
               ),
             ],
           ),

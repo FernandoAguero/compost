@@ -177,6 +177,12 @@ class _home_pageState extends State<home_page> {
                   }),
               ElevatedButton(
                 onPressed: () {
+                  //route to next apge
+                },
+                child: Text('Registrar actividad'),
+              ),
+              ElevatedButton(
+                onPressed: () {
                   //Use this to Log Out user
                   FirebaseAuth.instance.signOut();
                 },
