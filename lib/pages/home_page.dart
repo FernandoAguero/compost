@@ -123,6 +123,20 @@ class home_page extends StatefulWidget {
 class _home_pageState extends State<home_page> {
   TextEditingController dateController = TextEditingController();
 
+  TimeOfDay _time = TimeOfDay(hour: 7, minute: 15);
+
+  void _selectTime() async {
+    final TimeOfDay? newTime = await showTimePicker(
+      context: context,
+      initialTime: _time,
+    );
+    if (newTime != null) {
+      setState(() {
+        _time = newTime;
+      });
+    }
+  }
+
   @override
   void initState() {
     dateController.text = ""; //set the initial value of text field
@@ -176,10 +190,19 @@ class _home_pageState extends State<home_page> {
                     }
                   }),
               ElevatedButton(
+                onPressed: _selectTime,
+                child: Text('Seleccionar Horas'),
+              ),
+              SizedBox(height: 8),
+              Text('Tiempo seleccionado: ${_time.format(context)}'),
+              ElevatedButton(
                 onPressed: () {
                   //route to next apge
                 },
                 child: Text('Registrar actividad'),
+              ),
+              SizedBox(
+                height: 77,
               ),
               ElevatedButton(
                 onPressed: () {
